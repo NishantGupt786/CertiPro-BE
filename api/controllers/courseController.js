@@ -4,17 +4,20 @@ const jwt = require("jsonwebtoken");
 
 const courseController = {
   createPost: async (req, res) => {
-    const { title, description, price } = req.body;
+    const { title, description, price, category } = req.body;
     const authHeader = req.header("Authorization");
     const token = authHeader.replace("Bearer ", "");
     try {
       const user = jwt.decode(token);
       const userEmail = user.email;
+      const userDetails = await User.findOne({ email: userEmail });
       const new_course = new Course({
         title,
         email: userEmail,
         description,
         price,
+        author: userDetails.name,
+        category,
       });
       await new_course.save();
       res

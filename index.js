@@ -4,6 +4,7 @@ const os = require('os')
 const cors = require("cors");
 const authRoute = require("./api/routes/auth")
 const courseRoute = require('./api/routes/course')
+const userActionsRoute = require('./api/routes/userActions')
 require("dotenv").config();
 
 const mongoURI = process.env.DB_URI;
@@ -23,6 +24,7 @@ app.get("/ping", (req, res) => {
 
 app.use("/auth/", authRoute);
 app.use("/course/", courseRoute)
+app.use("/actions/", userActionsRoute)
 
 app.listen(8080, () => {
   console.log("Server is running on port 8080");
