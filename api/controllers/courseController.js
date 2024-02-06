@@ -19,6 +19,9 @@ const courseController = {
         author: userDetails.name,
         category,
       });
+      if (req.file) {
+        new_course.img = req.file.path;
+      }
       await new_course.save();
       res
         .status(200)
