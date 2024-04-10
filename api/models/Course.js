@@ -26,7 +26,7 @@ const courseSchema = mongoose.Schema({
     required: true,
   },
   img: {
-    type: string,
+    type: String,
   },
 });
 
